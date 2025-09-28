@@ -47,27 +47,27 @@
         :class="{ running: isRunning }"
       >
         <i :class="isRunning ? 'fas fa-pause' : 'fas fa-play'"></i>
-        {{ isRunning ? 'Pause' : 'Start' }}
+        <span>{{ isRunning ? 'Pause' : 'Start' }}</span>
       </button>
       
       <button v-if="!isBreak" @click="nextLevel" class="control-btn secondary">
         <i class="fas fa-forward"></i>
-        Next Level
+        <span>Next</span>
       </button>
       
       <button v-if="!isBreak" @click="previousLevel" class="control-btn secondary">
         <i class="fas fa-backward"></i>
-        Previous
+        <span>Prev</span>
       </button>
       
       <button v-if="isBreak" @click="skipBreak" class="control-btn skip">
         <i class="fas fa-fast-forward"></i>
-        Skip Break
+        <span>Skip</span>
       </button>
       
       <button @click="resetTimer" class="control-btn danger">
         <i class="fas fa-stop"></i>
-        Reset
+        <span>Reset</span>
       </button>
     </div>
     
@@ -227,17 +227,21 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 1rem;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .clock-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 600px;
 }
 
 .current-level h2 {
-  font-size: 3rem;
-  margin-bottom: 20px;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
   font-weight: 700;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
@@ -246,21 +250,22 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  font-size: 2.5rem;
+  gap: 1rem;
+  font-size: 2rem;
   font-weight: 700;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  flex-wrap: wrap;
 }
 
 .divider {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #ffd700;
   font-weight: 700;
 }
 
 .break-info h2 {
-  font-size: 3rem;
-  margin-bottom: 20px;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
   font-weight: 700;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
@@ -269,33 +274,36 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  font-size: 1.5rem;
+  gap: 1rem;
+  font-size: 1.25rem;
   font-weight: 600;
+  flex-wrap: wrap;
 }
 
 .break-message i {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #ffd700;
 }
 
 .timer-display {
-  margin-top: 30px;
+  margin-top: 1.5rem;
 }
 
 .time {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 700;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 .progress-bar {
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   height: 8px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 4px;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .progress-fill {
@@ -306,24 +314,28 @@ export default {
 
 .controls {
   display: flex;
-  gap: 15px;
-  margin-bottom: 40px;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
+  max-width: 500px;
 }
 
 .control-btn {
-  padding: 15px 25px;
+  padding: 0.75rem 1rem;
   border: none;
-  border-radius: 10px;
-  font-size: 1.1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   font-family: inherit;
+  min-width: 80px;
+  justify-content: center;
 }
 
 .control-btn.primary {
@@ -359,25 +371,28 @@ export default {
 
 .tournament-info {
   display: flex;
-  gap: 30px;
-  margin-bottom: 30px;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
+  max-width: 400px;
 }
 
 .info-section {
   text-align: center;
   background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
+  padding: 1rem;
   border-radius: 10px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  min-width: 120px;
+  min-width: 100px;
+  flex: 1;
 }
 
 .info-section h3 {
-  margin: 0 0 10px 0;
-  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
   color: #ffd700;
   font-weight: 600;
 }
@@ -385,7 +400,7 @@ export default {
 .player-count,
 .total-value,
 .rebuy-count {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #4ecdc4;
 }
@@ -393,15 +408,17 @@ export default {
 .next-level-preview {
   text-align: center;
   background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
+  padding: 1rem;
   border-radius: 10px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 300px;
 }
 
 .next-level-preview h4 {
-  margin: 0 0 15px 0;
-  font-size: 1.2rem;
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
   color: #ffd700;
   font-weight: 600;
 }
@@ -410,14 +427,21 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  font-size: 1.5rem;
+  gap: 0.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
+  flex-wrap: wrap;
 }
 
+/* Mobile Responsive */
 @media (max-width: 768px) {
+  .clock-container {
+    min-height: 70vh;
+    padding: 0.75rem;
+  }
+  
   .clock-header {
-    margin-bottom: 30px;
+    margin-bottom: 1.5rem;
   }
   
   .current-level h2,
@@ -426,21 +450,79 @@ export default {
   }
   
   .blinds {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+    gap: 0.75rem;
   }
   
   .time {
-    font-size: 3rem;
+    font-size: 2.5rem;
+  }
+  
+  .controls {
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .control-btn {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+  
+  .tournament-info {
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .info-section {
+    padding: 0.75rem;
+    min-width: 80px;
+  }
+  
+  .info-section h3 {
+    font-size: 0.8rem;
+  }
+  
+  .player-count,
+  .total-value,
+  .rebuy-count {
+    font-size: 1rem;
+  }
+  
+  .progress-bar {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .clock-container {
+    padding: 0.5rem;
+  }
+  
+  .current-level h2,
+  .break-info h2 {
+    font-size: 1.75rem;
+  }
+  
+  .blinds {
+    font-size: 1.25rem;
+    gap: 0.5rem;
+  }
+  
+  .time {
+    font-size: 2rem;
   }
   
   .controls {
     flex-direction: column;
     align-items: center;
+    gap: 0.5rem;
   }
   
   .control-btn {
-    width: 200px;
-    justify-content: center;
+    width: 100%;
+    max-width: 200px;
+    padding: 0.75rem;
   }
   
   .tournament-info {
@@ -448,8 +530,18 @@ export default {
     align-items: center;
   }
   
+  .info-section {
+    width: 100%;
+    max-width: 200px;
+  }
+  
   .progress-bar {
-    width: 250px;
+    max-width: 200px;
+  }
+  
+  .break-message {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
 </style>
